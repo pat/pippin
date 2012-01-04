@@ -1,0 +1,35 @@
+h1. Pippin
+
+Pippin is a Rails Engine for processing PayPal IPN requests. It automatically adds a route to your Rails application that validates and processes IPNs.
+
+If you want to do something with those IPN objects (and I recommend you do), then all you need to do is attach a listener, and that'll fire as each valid IPN is received.
+
+h2. Installation and Usage
+
+Just add it to your Gemfile:
+
+<pre><code>gem 'pippin', '~> 0.1'</code></pre>
+
+Then, in an initializer, add your listener:
+
+<pre><code># config/initializers/pippin.rb
+Pippin.listener = lambda { |ipn|
+  # use IPN data
+  ipn.params # => {'business' => 'email@domain.com', 'txn_type' => ...}
+}</code></pre>
+
+Any parameters with the suffix '_date' in their name will automatically be translated from PayPal's ugly date string to an appropriate Time object.
+
+When constructing your form that redirects people to PayPal, you'll want to set the @notify_url@ parameter to use Pippin's URL that has automatically been added to your routes: @pippin_ipns_url@.
+
+h2. Contributing
+
+Contributions are very much welcome - but keep in mind the following:
+
+* Keep patches in a separate branch.
+* Write tests for your patches.
+* Don't mess with the version or history file. I'll take care of that when the patch is merged in.
+
+h2. Credits
+
+Copyright (c) 2012, Pippin is developed and maintained by Pat Allan, and is released under the open MIT Licence.
