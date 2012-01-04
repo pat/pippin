@@ -8,7 +8,7 @@ h2. Installation and Usage
 
 Just add it to your Gemfile:
 
-<pre><code>gem 'pippin', '~> 0.1'</code></pre>
+<pre><code>gem 'pippin', '~> 0.1.1'</code></pre>
 
 Then, in an initializer, add your listener:
 
