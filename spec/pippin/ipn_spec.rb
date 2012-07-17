@@ -22,6 +22,18 @@ describe Pippin::IPN do
         'https://www.paypal.com/cgi-bin/webscr?cmd=_notify-validate&foo=bar')
     end
 
+    it "checks the validity in the sandbox if it is a test IPN" do
+      FakeWeb.register_uri :get,
+        /^https:\/\/www\.sandbox\.paypal\.com\/cgi-bin\/webscr/,
+        :body => 'VERIFIED'
+
+      ipn = Pippin::IPN.new({'test_ipn' => '1'}, 'foo=bar')
+      ipn.valid?
+
+      FakeWeb.should have_requested(:get,
+        'https://www.sandbox.paypal.com/cgi-bin/webscr?cmd=_notify-validate&foo=bar')
+    end
+
     it "returns true if PayPal confirms the validity of the data" do
       FakeWeb.register_uri :get, /^https:\/\/www\.paypal\.com\/cgi-bin\/webscr/,
         :body => 'VERIFIED'

@@ -38,6 +38,9 @@ class Pippin::IPN
   end
 
   def paypal_uri
-    "https://www.paypal.com/cgi-bin/webscr?cmd=_notify-validate&#{body}"
+    domain = 'www.paypal.com'
+    domain = 'www.sandbox.paypal.com' if params['test_ipn'] == '1'
+
+    "https://#{domain}/cgi-bin/webscr?cmd=_notify-validate&#{body}"
   end
 end
