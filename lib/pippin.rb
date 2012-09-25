@@ -7,6 +7,5 @@ end
 
 require 'pippin/app'
 require 'pippin/ipn'
-require 'pippin/version'
 
 require 'pippin/engine' if defined?(Rails)

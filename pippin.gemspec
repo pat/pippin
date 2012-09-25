@@ -1,10 +1,9 @@
 # -*- encoding: utf-8 -*-
 $:.push File.expand_path('../lib', __FILE__)
-require 'pippin/version'
 
 Gem::Specification.new do |s|
   s.name        = 'pippin'
-  s.version     = Pippin::VERSION
+  s.version     = '1.0.0'
   s.authors     = ['Pat Allan']
   s.email       = ['pat@freelancing-gods.com']
   s.homepage    = ''
