@@ -2,7 +2,9 @@ h1. Pippin
 
 Pippin is a Rails Engine for processing PayPal IPN requests. It automatically adds a route to your Rails application that validates and processes IPNs.
 
-If you want to do something with those IPN objects (and I recommend you do), then all you need to do is attach a listener, and that'll fire as each valid IPN is received.
+If you want to do something with those IPN objects (and I recommend you do), then all you need to do is attach a subscriber to the notification, and that'll fire as each valid IPN is received.
+
+*Using Rails 3.0?* Then you better jump back to the "0.1.1 release":https://github.com/pat/pippin/tree/v0.1.1 of this library, which does not use ActiveSupport::Notifications.
 
 h2. Installation and Usage
 
