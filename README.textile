@@ -20,7 +20,7 @@ Pippin.listener = lambda { |ipn|
 
 Any parameters with the suffix '_date' in their name will automatically be translated from PayPal's ugly date string to an appropriate Time object.
 
-When constructing your form that redirects people to PayPal, you'll want to set the @notify_url@ parameter to use Pippin's URL that has automatically been added to your routes: @pippin_ipns_url@.
+When constructing your form that redirects people to PayPal, you'll want to set the @notify_url@ parameter to use Pippin's URL that has automatically been added to your routes: @'pippin/ipns'@.
 
 h2. Contributing
 

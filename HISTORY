@@ -1,3 +1,6 @@
+Edge:
+* No controller - just as easy running things as a simple Rack app.
+
 0.1.1 - January 4th 2012
 * Don't require a specific version of Rails, just 3.0 or better.
 

@@ -1,5 +1,3 @@
 Rails.application.routes.draw do
-  namespace :pippin do
-    resources :ipns, :only => [:create]
-  end
+  mount Pippin::App.new => '/pippin/ipns'
 end

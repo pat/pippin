@@ -10,6 +10,7 @@ module Pippin
   end
 end
 
+require 'pippin/app'
 require 'pippin/engine'
 require 'pippin/ipn'
 require 'pippin/version'
