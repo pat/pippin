@@ -1,16 +1,12 @@
-require 'rails'
+require 'active_support/notifications'
+require 'active_support/core_ext/module/delegation'
 
 module Pippin
-  def self.listener
-    @listener
-  end
-
-  def self.listener=(listener)
-    @listener = listener
-  end
+  #
 end
 
 require 'pippin/app'
-require 'pippin/engine'
 require 'pippin/ipn'
 require 'pippin/version'
+
+require 'pippin/engine' if defined?(Rails)

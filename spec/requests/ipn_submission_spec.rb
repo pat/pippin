@@ -13,11 +13,15 @@ describe 'IPN Submission' do
       response.status.should == 200
     end
 
-    it "calls the provided listener" do
+    it "calls the provided subscriber" do
       ipn_lodged = false
-      Pippin.listener = lambda { |ipn| ipn_lodged = true }
+      sub = ActiveSupport::Notifications.subscribe('received.ipn') { |payload|
+        ipn_lodged = true
+      }
 
       post '/pippin/ipns'
+
+      ActiveSupport::Notifications.unsubscribe sub
 
       ipn_lodged.should be_true
     end
@@ -37,9 +41,13 @@ describe 'IPN Submission' do
 
     it "does not call the provided listener" do
       ipn_lodged = false
-      Pippin.listener = lambda { |ipn| ipn_lodged = true }
+      sub = ActiveSupport::Notifications.subscribe('received.ipn') { |payload|
+        ipn_lodged = true
+      }
 
       post '/pippin/ipns'
+
+      ActiveSupport::Notifications.unsubscribe sub
 
       ipn_lodged.should be_false
     end

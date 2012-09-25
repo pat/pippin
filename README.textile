@@ -8,15 +8,25 @@ h2. Installation and Usage
 
 Just add it to your Gemfile:
 
-<pre><code>gem 'pippin', '~> 0.1.1'</code></pre>
+<pre><code>gem 'pippin', '~> 1.0.0'</code></pre>
 
-Then, in an initializer, add your listener:
+Then somewhere (perhaps in an initializer), subscribe to the notifications:
 
-<pre><code># config/initializers/pippin.rb
-Pippin.listener = lambda { |ipn|
+<pre><code>ActiveSupport::Notifications.subscribe('received.ipn') do |*args|
+  event = ActiveSupport::Notifications::Event.new(*args)
+  ipn   = event.payload[:ipn]
   # use IPN data
   ipn.params # => {'business' => 'email@domain.com', 'txn_type' => ...}
-}</code></pre>
+end</code></pre>
+
+There are also notifications fired using the txn_type parameter as the prefix, if you wish to subscribe to certain types:
+
+<pre><code>ActiveSupport::Notifications.subscribe('subscr_signup.ipn') do |*args|
+  event = ActiveSupport::Notifications::Event.new(*args)
+  ipn   = event.payload[:ipn]
+
+  # A subscription sign up has happened. Do something!
+end</code></pre>
 
 Any parameters with the suffix '_date' in their name will automatically be translated from PayPal's ugly date string to an appropriate Time object.
 

@@ -1,4 +1,5 @@
 Edge:
+* No listener - use ActiveSupport::Notifications instead.
 * No controller - just as easy running things as a simple Rack app.
 
 0.1.1 - January 4th 2012
