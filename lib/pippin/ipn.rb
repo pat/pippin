@@ -17,8 +17,8 @@ class Pippin::IPN
   def parse_dates(params)
     params.each do |key, value|
       next if key.to_s[/_date$/].nil?
-
-      params[key] = parse_date value
+      
+      params[key] = (value == 'N/A') ? nil : parse_date(value)
     end
   end
 

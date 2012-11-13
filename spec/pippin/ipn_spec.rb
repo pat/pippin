@@ -6,6 +6,11 @@ describe Pippin::IPN do
       ipn = Pippin::IPN.new :subscr_date => '20:36:25 Jan 02, 2012 PST'
       ipn.params[:subscr_date].should == Time.zone.local(2012, 1, 3, 4, 36, 25)
     end
+    
+    it "should set N/A dates to nil" do
+      ipn = Pippin::IPN.new :subscr_date => 'N/A'
+      ipn.params[:subscr_date].should == nil
+    end
   end
 
   describe '#valid?' do
